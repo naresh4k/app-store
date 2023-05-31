@@ -5,9 +5,6 @@ import TabItem from '../TabItem'
 
 import './index.css'
 
-const SEARCH_ICON_URL =
-  'https://assets.ccbp.in/frontend/react-js/app-store/app-store-search-img.png'
-
 const tabsList = [
   {tabId: 'SOCIAL', displayText: 'Social'},
   {tabId: 'GAMES', displayText: 'Games'},
@@ -303,36 +300,12 @@ class AppStore extends Component {
     activeTabId: tabsList[0].tabId,
   }
 
-  setActiveTabId = tabId => {
-    this.setState({activeTabId: tabId})
-  }
-
-  onChangeSearchInput = event => {
-    this.setState({searchInput: event.target.value})
-  }
-
-  getActiveTabApps = searchedApps => {
-    const {activeTabId} = this.state
-    const filteredApps = searchedApps.filter(
-      eachSearchedApp => eachSearchedApp.category === activeTabId,
-    )
-
-    return filteredApps
-  }
-
-  getSearchResults = () => {
-    const {searchInput} = this.state
-    const searchResults = appsList.filter(eachApp =>
-      eachApp.appName.toLowerCase().includes(searchInput.toLowerCase()),
-    )
-
-    return searchResults
-  }
-
   render() {
     const {searchInput, activeTabId} = this.state
-    const searchResults = this.getSearchResults()
-    const filteredApps = this.getActiveTabApps(searchResults)
+    const searchResults = appsList.filter(e =>
+      e.appName.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+    const filteredApps = searchResults.filter(e => e.category === activeTabId)
 
     return (
       <div className="app-container">
@@ -343,16 +316,21 @@ class AppStore extends Component {
               type="search"
               placeholder="Search"
               value={searchInput}
-              onChange={this.onChangeSearchInput}
+              onChange={e => {
+                this.setState({searchInput: e.target.value})
+              }}
             />
-            <img src={SEARCH_ICON_URL} alt="search icon" />
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/app-store/app-store-search-img.png"
+              alt="search icon"
+            />
           </div>
           <ul className="tabs-list">
             {tabsList.map(eachTab => (
               <TabItem
                 key={eachTab.tabId}
                 tabDetails={eachTab}
-                setActiveTabId={this.setActiveTabId}
+                setActiveTabId={id => this.setState({activeTabId: id})}
                 isActive={activeTabId === eachTab.tabId}
               />
             ))}
