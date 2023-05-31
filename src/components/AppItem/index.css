@@ -1,4 +1,4 @@
-.app-item {
+.apps-list li {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,34 +11,34 @@
   max-width: 128px;
 }
 
-@media screen and (min-width: 768px) {
-  .app-item {
+@media screen and (width > 768px) {
+  .apps-list li {
     max-width: 198px;
     margin: 0 10px 24px 10px;
     padding-top: 24px;
   }
 }
 
-.app-image {
+.apps-list img {
   width: 70px;
   height: 70px;
 }
 
-@media screen and (min-width: 768px) {
-  .app-image {
+@media screen and (width > 768px) {
+  .apps-list img {
     width: 102px;
     height: 102px;
   }
 }
 
-.app-name {
+.apps-list p {
   color: #1e293b;
   font-family: 'Bree Serif';
   font-size: 16px;
 }
 
 @media screen and (min-width: 768px) {
-  .app-name {
+  .apps-list p {
     font-family: 'Bree Serif';
     font-size: 24px;
   }

@@ -336,21 +336,16 @@ class AppStore extends Component {
 
     return (
       <div className="app-container">
-        <div className="app-store">
-          <h1 className="heading">App Store</h1>
+        <div>
+          <h1>App Store</h1>
           <div className="search-input-container">
             <input
               type="search"
               placeholder="Search"
-              className="search-input"
               value={searchInput}
               onChange={this.onChangeSearchInput}
             />
-            <img
-              src={SEARCH_ICON_URL}
-              alt="search icon"
-              className="search-icon"
-            />
+            <img src={SEARCH_ICON_URL} alt="search icon" />
           </div>
           <ul className="tabs-list">
             {tabsList.map(eachTab => (
